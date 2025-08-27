@@ -25,8 +25,9 @@ import {CommonModule} from '@angular/common';
   templateUrl: './consulta.html',
   styleUrl: './consulta.scss'
 })
-export class Consulta implements OnInit{
+export class Consulta implements OnInit {
 
+  nomeBusca: string = '';
   listaClientes: Cliente[] = [];
   colunasTable: string[] = ["id", "nome", "cpf", "dataNascimento", "email"];
 
@@ -36,7 +37,11 @@ export class Consulta implements OnInit{
   }
 
   ngOnInit(): void {
-        this.listaClientes = this.clienteService.pesquisarCliente('');
-    }
+    this.listaClientes = this.clienteService.pesquisarCliente('');
+  }
+
+  pesquisar() {
+    this.listaClientes = this.clienteService.pesquisarCliente(this.nomeBusca);
+  }
 
 }
