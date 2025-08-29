@@ -60,4 +60,13 @@ export class Consulta implements OnInit {
       });
   }
 
+  preparaDeletando(cliente: Cliente) {
+    cliente.deletando = true;
+  }
+
+  deletar(cliente: Cliente) {
+    this.clienteService.deletar(cliente);
+    this.listaClientes = this.clienteService.pesquisarCliente('');
+  }
+
 }

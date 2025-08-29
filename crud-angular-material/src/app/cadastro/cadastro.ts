@@ -51,6 +51,10 @@ export class Cadastro implements OnInit {
     });
   }
 
+  limpar() {
+    this.cliente = Cliente.newCliente();
+  }
+
   salvar() {
     if (!this.atualizando) {
       this.clienteService.salvar(this.cliente);
