@@ -48,7 +48,17 @@ export class Consulta implements OnInit {
 
   preparaEditar(id: string) {
     console.log("ID do CLiente", id);
-    this.router.navigate(['/cadastro'], {queryParams: {"id": id}});
+    this.router.navigate(['/cadastro'], {queryParams: {"id": id}})
+      .then(success => {
+        if (success) {
+          console.log("Navigation successful!")
+        } else {
+          console.log("Navigation failed!")
+        }
+      })
+      .catch(error => {
+        console.log('Navigation error:', error);
+      });
   }
 
 }
