@@ -47,7 +47,6 @@ export class Consulta implements OnInit {
   }
 
   preparaEditar(id: string) {
-    console.log("ID do CLiente", id);
     this.router.navigate(['/cadastro'], {queryParams: {"id": id}})
       .then(success => {
         if (success) {
