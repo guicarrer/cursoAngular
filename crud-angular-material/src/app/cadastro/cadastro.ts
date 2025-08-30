@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
@@ -10,6 +10,7 @@ import {Cliente} from './cliente';
 import {ClienteService} from '../service/cliente-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,6 +24,7 @@ import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
     MatIconModule,
     MatButtonModule,
     NgxMaskDirective,
+
   ],
   providers: [
     provideNgxMask()
@@ -34,6 +36,7 @@ export class Cadastro implements OnInit {
 
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
+  snackBar: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private clienteService: ClienteService,
@@ -56,6 +59,10 @@ export class Cadastro implements OnInit {
     });
   }
 
+  mostrarMensagem(mensagem: string): void {
+    this.snackBar.open(mensagem, "Sucesso");
+  }
+
   limpar() {
     this.cliente = Cliente.newCliente();
   }
@@ -64,6 +71,7 @@ export class Cadastro implements OnInit {
     if (!this.atualizando) {
       this.clienteService.salvar(this.cliente);
       this.cliente = Cliente.newCliente();
+      this.mostrarMensagem("Salvo Com Sucesso");
     } else {
       this.clienteService.atualizar(this.cliente)
       this.router.navigate(['/consulta'])
@@ -77,6 +85,7 @@ export class Cadastro implements OnInit {
         .catch(error => {
           console.log('Navigation error:', error);
         });
+      this.mostrarMensagem("Atualizado com Sucesso");
     }
   }
 
