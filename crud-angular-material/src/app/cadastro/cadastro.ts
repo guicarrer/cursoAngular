@@ -1,4 +1,4 @@
-import {Component, OnInit, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
@@ -11,6 +11,10 @@ import {ClienteService} from '../service/cliente-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgxMaskDirective, provideNgxMask} from 'ngx-mask';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Estado, Municipio} from '../model/brasilApi.models';
+import {BrasilApiService} from '../service/brasil-api-service';
+import {MatSelectChange, MatSelectModule} from '@angular/material/select';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,6 +28,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatIconModule,
     MatButtonModule,
     NgxMaskDirective,
+    MatSelectModule,
+    CommonModule
 
   ],
   providers: [
@@ -37,11 +43,14 @@ export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
   snackBar: MatSnackBar = inject(MatSnackBar);
+  estados: Estado[] = [];
+  municipios: Municipio[] = [];
 
   constructor(
     private clienteService: ClienteService,
+    private brasilService: BrasilApiService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {
   }
 
@@ -54,9 +63,14 @@ export class Cadastro implements OnInit {
         if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+          if (this.cliente.uf) {
+            const event = { value: this.cliente.uf };
+            this.carregarMunicipio(event as MatSelectChange);
+          }
         }
       }
     });
+    this.carregarUFs();
   }
 
   mostrarMensagem(mensagem: string): void {
@@ -87,6 +101,21 @@ export class Cadastro implements OnInit {
         });
       this.mostrarMensagem("Atualizado com Sucesso");
     }
+  }
+
+  carregarUFs() {
+    this.brasilService.listarEstados().subscribe({
+      next: listaEstados => this.estados = listaEstados,
+      error: error => console.log("Ocorreu um Erro: ", error)
+    });
+  }
+
+  carregarMunicipio(event: MatSelectChange) {
+    const ufSelecionada = event.value;
+    this.brasilService.listarMunicipios(ufSelecionada).subscribe({
+      next: listaMunicipios => this.municipios = listaMunicipios,
+      error: error => console.log("Ocorreu um Erro: ", error)
+    });
   }
 
 }
