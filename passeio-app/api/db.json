@@ -1,9 +1,14 @@
 {
   "categorias": [
     {
-      "id": 1,
-      "nome": "Restaurantes",
-      "descricao": "Lugares para Alimentação"
+      "nome": "Restaurante Atualizado",
+      "descricao": "Lugares para alimentacao",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "nome": "Shoppings",
+      "descricao": "Lugares para fazer compras e passear"
     }
   ]
 }
