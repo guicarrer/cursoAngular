@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing-module';
 import {App} from './app';
 import {provideHttpClient, withFetch} from '@angular/common/http';
 import { Lugar } from './lugares/lugar/lugar';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { Lugar } from './lugares/lugar/lugar';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
