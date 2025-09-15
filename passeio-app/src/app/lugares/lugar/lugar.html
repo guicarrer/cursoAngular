@@ -13,6 +13,9 @@
         class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring focus:ring-blue-400"
         required
       />
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('nome')">
+        Campo Obrigatório
+      </span>
     </div>
     <div class="mb-4">
       <label for="nome" class="block text-gray-600 font-medium mb-2">Categoria</label>
@@ -27,6 +30,9 @@
           {{ cat.nome }}
         </option>
       </select>
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('categoria')">
+        Campo Obrigatório
+      </span>
     </div>
     <div class="mb-4">
       <label for="localizacao" class="block text-gray-600 font-medium mb-2">Localização</label>
@@ -39,6 +45,9 @@
         class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring focus:ring-blue-400"
         required
       />
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('localizacao')">
+        Campo Obrigatório
+      </span>
     </div>
     <div class="mb-4">
       <label for="urlFoto" class="block text-gray-600 font-medium mb-2">URL Foto</label>
@@ -51,6 +60,9 @@
         class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring focus:ring-blue-400"
         required
       />
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('urlFoto')">
+        Campo Obrigatório
+      </span>
     </div>
     <div class="mb-4">
       <label for="avaliacao" class="block text-gray-600 font-medium mb-2">Avaliação</label>
@@ -67,6 +79,9 @@
         <option [value]="4">4 - MuitoBom</option>
         <option [value]="5">5 - Excelente</option>
       </select>
+      <span class="text-red-500 text-sm" *ngIf="isCampoInvalido('avaliacao')">
+        Campo Obrigatório
+      </span>
     </div>
 
     <button type="submit" class="w-full bg-blue-600 text-white font-semibold p-3 rounded hover:bg-blue-700">
