@@ -20,5 +20,15 @@
       "nome": "teste",
       "descricao": "teste"
     }
+  ],
+  "lugares": [
+    {
+      "id": "e8ad",
+      "nome": "Bar do Zé",
+      "categoria": "Restaurante Atualizado",
+      "localizacao": "Mococa",
+      "urlFoto": "http://bardoze/com/br",
+      "avaliacao": "4"
+    }
   ]
 }

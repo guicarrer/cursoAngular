@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Categoria} from '../../categorias/model/categoria';
 import {CategoriaService} from '../../categorias/service/categoria-service';
+import {LugarService} from '../service/lugar-service';
 
 @Component({
   selector: 'app-lugar',
@@ -15,7 +16,8 @@ export class Lugar implements OnInit {
   categorias: Categoria[] = [];
 
   constructor(
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private lugarService: LugarService
   ) {
     this.camposForm = new FormGroup({
       nome: new FormControl('', Validators.required),
@@ -38,6 +40,14 @@ export class Lugar implements OnInit {
 
   salvar(): void {
     console.log("Valores", this.camposForm.value);
+    this.lugarService.salvar(this.camposForm.value)
+      .subscribe({
+        next: (lugar) => {
+          console.log("Cadastrado com sucesso", lugar);
+          this.camposForm.reset();
+        },
+        error: erro => console.log("Ocorreu um erro", erro)
+      })
   }
 
 }
