@@ -10,7 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     App,
-    Lugar
+    Lugar,
   ],
   imports: [
     BrowserModule,
