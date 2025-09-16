@@ -38,8 +38,10 @@ export class Galeria implements OnInit {
         },
         error: erro => console.error("Ocorreu um erro:", erro)
       });
+  }
 
-
+  getTotalEstrelas(lugar: Lugar): string {
+    return '&#9733;'.repeat(lugar.avaliacao || 0) + '&#9734'.repeat(5 - (lugar.avaliacao || 0));
   }
 
 }
