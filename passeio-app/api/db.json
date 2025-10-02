@@ -1,7 +1,7 @@
 {
   "categorias": [
     {
-      "nome": "Restaurante Atualizado",
+      "nome": "Restaurantes",
       "descricao": "Lugares para alimentacao",
       "id": "1"
     },
@@ -17,7 +17,7 @@
     },
     {
       "id": "11d9",
-      "nome": "teste",
+      "nome": "Parques",
       "descricao": "teste"
     }
   ],
@@ -25,10 +25,10 @@
     {
       "id": "e8ad",
       "nome": "Bar do Zé",
-      "categoria": "Restaurante Atualizado",
+      "categoria": "Restaurantes",
       "localizacao": "Mococa",
       "urlFoto": "https://controlenamao.com.br/blog/wp-content/uploads/2025/01/Como-Funciona-um-Gastrobar.webp",
-      "avaliacao": "4"
+      "avaliacao": "5"
     },
     {
       "id": "190c",
@@ -41,7 +41,7 @@
     {
       "id": "47f1",
       "nome": "Parque do Ibirapuera",
-      "categoria": "teste",
+      "categoria": "Parques",
       "localizacao": "São Paulo",
       "urlFoto": "https://images.adsttc.com/media/images/56bd/c6e2/e58e/cea3/6900/00be/slideshow/Ibira.jpg?1455277790",
       "avaliacao": "4"
