@@ -6,11 +6,13 @@ import {App} from './app';
 import {provideHttpClient, withFetch} from '@angular/common/http';
 import { Lugar } from './lugares/lugar/lugar';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LandingPage } from './landing-page/landing-page';
 
 @NgModule({
   declarations: [
     App,
     Lugar,
+    LandingPage,
   ],
   imports: [
     BrowserModule,
