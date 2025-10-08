@@ -7,6 +7,7 @@ import {provideHttpClient, withFetch} from '@angular/common/http';
 import { Lugar } from './lugares/lugar/lugar';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LandingPage } from './landing-page/landing-page';
+import {provideOAuthClient} from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LandingPage } from './landing-page/landing-page';
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideOAuthClient()
   ],
   bootstrap: [App]
 })

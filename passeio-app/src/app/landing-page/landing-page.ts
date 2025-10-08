@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LandingPage {
 
-  profile: Profile | undefined = {name: 'Zezinho', email: 'ze&gmail.com'};
+  profile: Profile | undefined;
 
   constructor(
     private router: Router
