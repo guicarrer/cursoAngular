@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Profile} from './profile.model';
 import {Router} from '@angular/router';
+import {AuthGoogle} from '../auth-google';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,13 +9,18 @@ import {Router} from '@angular/router';
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss'
 })
-export class LandingPage {
+export class LandingPage implements OnInit {
 
   profile: Profile | undefined;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private loginsService: AuthGoogle
   ) {
+  }
+
+  ngOnInit(): void {
+    this.loginsService.initConfiguration();
   }
 
   navegar(): void {
@@ -22,11 +28,13 @@ export class LandingPage {
   }
 
   logarComGoogle(): void {
-
+    this.loginsService.login();
   }
 
   isLoggedIn(): boolean {
-    // Para saber se o profile está populado
+    const dadosGoole = this.loginsService.getLoggedProfile();
+    console.log("Dados Google: " + dadosGoole);
+    this.profile = dadosGoole;
     return !!this.profile;
   }
 

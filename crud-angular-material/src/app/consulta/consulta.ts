@@ -32,11 +32,11 @@ export class Consulta implements OnInit {
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
   colunasTable: string[] = ["id", "nome", "cpf", "dataNascimento", "email", "acoes"];
-  snackBar: MatSnackBar = inject(MatSnackBar);
 
   constructor(
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
   }
 

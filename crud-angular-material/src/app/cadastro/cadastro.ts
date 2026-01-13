@@ -42,7 +42,6 @@ export class Cadastro implements OnInit {
 
   cliente: Cliente = Cliente.newCliente();
   atualizando: boolean = false;
-  snackBar: MatSnackBar = inject(MatSnackBar);
   estados: Estado[] = [];
   municipios: Municipio[] = [];
 
@@ -50,7 +49,8 @@ export class Cadastro implements OnInit {
     private clienteService: ClienteService,
     private brasilService: BrasilApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
   }
 

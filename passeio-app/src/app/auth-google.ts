@@ -8,33 +8,37 @@ import {auth} from './auth.config';
 })
 export class AuthGoogle {
 
-  private oAtuhService: OAuthService = inject(OAuthService);
-  private router: Router = inject(Router);
+  // private oauthService: OAuthService = inject(OAuthService);
+  // private router: Router = inject(Router);
   profile = signal<any>(null);
 
-  constructor() {
-    this.initConfiguration();
+  constructor(private oauthService: OAuthService,
+              private router: Router) {
   }
 
-  initConfiguration(): void {
-    this.oAtuhService.configure(auth);
-    this.oAtuhService.setupAutomaticSilentRefresh();
-    this.oAtuhService.loadDiscoveryDocumentAndTryLogin().then(() => {
-      if (this.oAtuhService.hasValidIdToken()) {
-        this.profile.set(this.oAtuhService.getIdentityClaims());
+  initConfiguration(){
+    this.oauthService.configure(auth);
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(() => {
+      if(this.oauthService.hasValidIdToken()){
+        this.profile.set(this.oauthService.getIdentityClaims());
       }
     });
   }
 
-  login(): void {
-    this.oAtuhService.initImplicitFlow();
+  login(){
+    this.oauthService.initImplicitFlow();
   }
 
-  logou(): void {
-    this.oAtuhService.revokeTokenAndLogout();
-    this.oAtuhService.logOut();
+  logout(){
+    this.oauthService.revokeTokenAndLogout();
+    this.oauthService.logOut();
     this.profile.set(null);
-    this.router.navigate(['']);
+    this.router.navigate([''])
+  }
+
+  getLoggedProfile(){
+    return this.profile();
   }
 
 }
