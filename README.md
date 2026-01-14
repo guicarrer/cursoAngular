@@ -97,3 +97,19 @@ docker start cursoangular-frontend-container
 * A aplicação frontend estará acessível em http://localhost:80 (ou http://localhost:4200 se você mapeou para essa porta).
 * A API JSON estará acessível em http://localhost:4000
 
+# Instalação do Module Federation
+```
+npx ng add @angular-architects/module-federation@20.0.0 --project vendas --port 4200 --type host --skip-confirmation
+npx ng add @angular-architects/module-federation@20.0.0 --project produtos --port 4201 --type remote --skip-confirmation
+npx ng add @angular-architects/module-federation@20.0.0 --project grafico --port 4202 --type remote --skip-confirmation
+```
+Onde:
+* O primeiro comando adiciona o Module Federation ao projeto "vendas", configurando-o como host na porta 4200.
+  * --project vendas: Especifica o projeto Angular chamado "vendas".
+  * --port 4200: Define a porta onde o host será executado.
+  * --type host: Indica que este projeto atuará como host na configuração de Module Federation.
+  * --skip-confirmation: Pula qualquer prompt de confirmação durante a instalação.
+* O segundo comando adiciona o Module Federation ao projeto "produtos", configurando-o como remoto na porta 4201, com o nome remoto "produtos.
+  * --type remote: Indica que este projeto atuará como remoto na configuração de Module Federation.
+* O terceiro comando adiciona o Module Federation ao projeto "grafico", configurando-o como remoto na porta 4202, com o nome remoto "grafico".
+  * --type remote: Indica que este projeto atuará como remoto na configuração de Module Federation.
