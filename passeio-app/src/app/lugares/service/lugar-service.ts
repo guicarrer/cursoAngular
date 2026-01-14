@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Lugar} from '../model/lugar';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LugarService {
+
+  apiUrl: string = environment.apiUrl + '/lugares';
+
 
   constructor(
     private http: HttpClient
@@ -14,11 +18,11 @@ export class LugarService {
   }
 
   salvar(lugar: Lugar): Observable<Lugar> {
-    return this.http.post<Lugar>('http://localhost:3000/lugares', lugar);
+    return this.http.post<Lugar>( this.apiUrl, lugar);
   }
 
   obterTodos(): Observable<Lugar[]> {
-    return this.http.get<Lugar[]>('http://localhost:3000/lugares');
+    return this.http.get<Lugar[]>(this.apiUrl);
   }
 
   filtrar(nome: string, categoria:string): Observable<Lugar[]>{
@@ -34,7 +38,7 @@ export class LugarService {
       console.log("CATEGORIA_LIKE: " + parametros);
     }
     console.log("PARAMETROS: " + parametros);
-    return this.http.get<Lugar[]>('http://localhost:3000/lugares', {
+    return this.http.get<Lugar[]>(this.apiUrl, {
       params: parametros,
     });
   }
